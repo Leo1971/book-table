@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'OMSforLeo.urls'
+ROOT_URLCONF = 'book-table.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'OMSforLeo.wsgi.application'
+WSGI_APPLICATION = 'book-table.wsgi.application'
 
 
 # Database
