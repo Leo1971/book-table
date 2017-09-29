@@ -1,0 +1,66 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book-table</title>
+     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+</head>
+<body>
+    <h1>book-table</h1>
+    <div style="padding: 0px 0px 50px 0px;">
+        <div class="col-lg-5 col-lg-offset-3">
+            <form action="/search" method="get">
+               <div class="input-group">
+                    <input type="text" class="form-control" name="sid">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Go!</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>author</th>
+            <th>operation</th>
+        </tr>
+        {% for line in list %}
+        <tr>
+            <td>{{ line.id }}</td>
+            <td>{{ line.name }}</td>
+            <td>{{ line.author }}</td>
+            <td>
+                <form action="/delete" method="post">
+                    {% csrf_token %}
+                    <input class="sr-only" value="{{ line.id }}" name="did">
+                    <button type="submit">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="col-lg-6 col-lg-offset-3">
+        <form class="form-inline" role="form" method="post" action="/insert">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id">ID:</label>
+                <input type="text" class="form-control" name="id" placeholder="请输入ID">
+            </div>
+            <div class="form-group">
+                <label for="name">NAME:</label>
+                <input type="text" class="form-control" name="name" placeholder="请输入NAME">
+            </div>
+            <div class="form-group">
+                <label for="author">AUTHOR:</label>
+                <input type="text" class="form-control" name="author" placeholder="请输入AUTHOR">
+            </div>
+            <button type="submit" class="btn btn-default">添加</button>
+        </form>
+    </div>
+</body>
+</html>
