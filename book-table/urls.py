@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^insert$', insert),
     url(r'^delete$', delete),
     url(r'^search$', search),
+    url(r'^admin/', admin.site.urls),
 ]
