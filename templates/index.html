@@ -4,7 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Book-table</title>
-     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+    <script src="{% static 'js/jquery-2.2.0.min.js' %}"></script>
+    <script>
+        $(function () {
+            $("#searchfield").keyup(function() {
+                url = "/search?sid=" + this.value.toString() + " #booktable";
+                $("#booktable").load(url);
+            });
+        });
+    </script>
 </head>
 <body>
     <h1>book-table</h1>
@@ -12,7 +21,7 @@
         <div class="col-lg-5 col-lg-offset-3">
             <form action="/search" method="get">
                <div class="input-group">
-                    <input type="text" class="form-control" name="sid">
+                    <input type="text" class="form-control" name="sid" id="searchfield" >
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="submit">Go!</button>
                     </span>
@@ -20,7 +29,7 @@
             </form>
         </div>
     </div>
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="booktable">
         <tr>
             <th>id</th>
             <th>name</th>
